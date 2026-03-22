@@ -6,6 +6,8 @@ import {
   ShieldCheck, GitBranch, Coffee, Briefcase, Braces, FileCode, Command, 
   Hash, HardDrive, Share2
 } from 'lucide-react';
+import EXPERIENCE from './data/Experience';
+import PROJECTS  from './data/Project';
 
 // --- 1. DATA CONFIGURATION ---
 
@@ -35,86 +37,7 @@ const SKILLS_CATEGORIES = [
   }
 ];
 
-const EXPERIENCE = [
-  {
-    id: "EXP_01",
-    role: "Full Stack Intern",
-    company: "ANNOVA",
-    period: "JUN 2025 - DEC 2025",
-    desc: "Deployed to production environment. Engineered scalable microservices.",
-    points: [
-      "Optimized React component rendering cycles, improving dashboard latency by 35%.",
-      "Integrated secure payment gateways and OAuth2 authentication flows.",
-      "Collaborated with senior engineers to migrate legacy code to modern MERN standards."
-    ]
-  },
-  {
-    id: "EXP_02",
-    role: "MERN Trainee",
-    company: "CODE BETTER INSTITUTE",
-    period: "2024",
-    desc: "Intensive bootcamp focused on Advanced Data Structures and System Architecture.",
-    points: [
-      "Mastered MongoDB aggregation pipelines for complex data analytics.",
-      "Built 5+ capstone projects demonstrating CRUD, Real-time updates, and Auth.",
-      "Solved 200+ DSA problems in JavaScript to strengthen core logic."
-    ]
-  },
-  {
-    id: "EXP_03",
-    role: "B.Tech (CSE)",
-    company: "IPS ACADEMY",
-    period: "2022 - 2026",
-    desc: "Academic foundation in Computer Science Engineering.",
-    points: [
-      "Specialization in Web Technologies and Database Management Systems.",
-      "Lead Organizer for Tech-Fest 2024.",
-      "Consistent academic performer with focus on practical implementation."
-    ]
-  }
-];
 
-const PROJECTS = [
-  {
-    id: "PRJ_01",
-    title: "QGEN AI",
-    category: "ARTIFICIAL INTELLIGENCE",
-    tech: "MERN // OPENAI // TAILWIND",
-    desc: "An autonomous agent transforming natural language prompts into executable SQL queries.",
-    features: [
-      "Natural Language Processing (NLP) integration.",
-      "Real-time database schema mapping.",
-      "Automated query optimization engine.",
-      "Export results to CSV/JSON."
-    ]
-  },
-  {
-    id: "PRJ_02",
-    title: "HOSTEL OS",
-    category: "RESOURCE MANAGEMENT",
-    tech: "REACT // NODE // MONGODB",
-    desc: "A centralized digital ecosystem for hostel administration and mess logistics.",
-    features: [
-      "Digital meal coupon system.",
-      "Inventory tracking with low-stock alerts.",
-      "Automated monthly billing generation.",
-      "Student attendance analytics dashboard."
-    ]
-  },
-  {
-    id: "PRJ_03",
-    title: "CRYPTOSIGHT",
-    category: "FINANCIAL TELEMETRY",
-    tech: "WEBSOCKETS // D3.JS",
-    desc: "High-frequency trading dashboard visualizing crypto assets in real-time.",
-    features: [
-      "Sub-millisecond WebSocket data streams.",
-      "Interactive candlestick charts via D3.js.",
-      "Live order book visualization.",
-      "Price alert notifications."
-    ]
-  }
-];
 
 // --- 2. UTILITY COMPONENTS ---
 
@@ -381,9 +304,14 @@ const Projects = () => {
                 </ul>
               </div>
               <div className="flex items-end justify-start md:justify-end">
-                <button className="flex items-center gap-3 bg-white text-black font-bold px-6 py-3 hover:bg-cyan-400 transition-colors uppercase text-sm tracking-widest">
-                  Initialize Demo <ArrowUpRight size={16} />
-                </button>
+              <a 
+  href={proj.link} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="flex items-center gap-3 bg-white text-black font-bold px-6 py-3 hover:bg-cyan-400 transition-colors uppercase text-sm tracking-widest w-fit"
+>
+  Initialize Demo <ArrowUpRight size={16} />
+</a>
               </div>
             </div>
           </Card>
