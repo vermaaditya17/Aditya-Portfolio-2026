@@ -31,16 +31,17 @@ const PROJECTS = [
   },
   {
     id: "PRJ_03",
-    title: "CRYPTOSIGHT",
-    category: "FINANCIAL TELEMETRY",
-    tech: "WEBSOCKETS // D3.JS",
-    desc: "High-frequency trading dashboard visualizing crypto assets in real-time.",
+    title: "CINEMATIC NAZARE",
+    category: "PREMIUM WEB PLATFORM",
+    tech: "REACT // TAILWIND CSS // MEDIA OPTIMIZATION",
+    desc: "A visually immersive portfolio website featuring custom video modals and optimized media delivery.",
     features: [
-      "Sub-millisecond WebSocket data streams.",
-      "Interactive candlestick charts via D3.js.",
-      "Live order book visualization.",
-      "Price alert notifications."
-    ]
+     "Custom state-driven video modal system.",
+      "Dynamic client reviews with hover animations.",
+      "Optimized high-resolution media rendering.",
+      "Responsive cinematic UI/UX design."
+    ],
+    link:"https://cinematic-nazare.vercel.app/"
   }
 ];
 export default PROJECTS
