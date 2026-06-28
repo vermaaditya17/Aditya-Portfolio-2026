@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import EXPERIENCE from './data/Experience';
 import PROJECTS  from './data/Project';
+import emailjs from "@emailjs/browser"
 
 // --- 1. DATA CONFIGURATION ---
 
@@ -344,56 +345,124 @@ const Services = () => {
 };
 
 const Contact = () => {
+  const form = useRef()
   const [status, setStatus] = useState("TRANSMIT DATA");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus("SENDING...");
-    
-    setTimeout(() => {
-        // --- ALERT AS REQUESTED ---
-        alert("TRANSMISSION SUCCESSFUL! I will contact you at " + PERSONAL_INFO.email);
-        setStatus("SENT");
-        e.target.reset();
-        setTimeout(() => setStatus("TRANSMIT DATA"), 2000);
-    }, 1500);
-  };
+  e.preventDefault();
+
+  setStatus("SENDING...");
+
+  emailjs
+    .sendForm(
+      "service_uqp4c1q",
+      "template_0pz7q17",
+      form.current,
+      "Hdp_cuZupf1gMVCKP"
+    )
+    .then(() => {
+      alert(
+        "🚀 TRANSMISSION SUCCESSFUL!\n\nThank you for contacting me.\nI'll get back to you shortly."
+      );
+
+      setStatus("TRANSMISSION COMPLETE");
+
+      form.current.reset();
+
+      setTimeout(() => {
+        setStatus("TRANSMIT DATA");
+      }, 3000);
+    })
+    .catch((error) => {
+      console.error(error);
+
+      alert("❌ Transmission Failed. Please try again.");
+
+      setStatus("TRANSMIT DATA");
+    });
+};
 
   return (
-    <section id="contact" className="py-32 px-6 relative z-10 max-w-4xl mx-auto">
-      <Card className="p-12 border-t-4 border-t-cyan-500">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="p-3 bg-cyan-500 text-black">
-            <Mail size={24} />
-          </div>
-          <div>
-            <h2 className="text-3xl font-bold text-white">ESTABLISH UPLINK</h2>
-            <p className="text-gray-500 text-sm font-mono">SECURE CHANNEL TO {PERSONAL_INFO.email}</p>
-          </div>
+   <section id="contact" className="py-32 px-6 relative z-10 max-w-4xl mx-auto">
+  <Card className="p-12 border-t-4 border-t-cyan-500">
+    <div className="flex items-center gap-4 mb-8">
+      <div className="p-3 bg-cyan-500 text-black">
+        <Mail size={24} />
+      </div>
+      <div>
+        <h2 className="text-3xl font-bold text-white">
+          ESTABLISH UPLINK
+        </h2>
+        <p className="text-gray-500 text-sm font-mono">
+          SECURE CHANNEL TO {PERSONAL_INFO.email}
+        </p>
+      </div>
+    </div>
+
+    <form
+      ref={form}
+      onSubmit={handleSubmit}
+      className="space-y-6"
+    >
+      <div className="grid md:grid-cols-2 gap-6">
+
+        {/* Name */}
+        <div className="space-y-2">
+          <label className="text-xs font-mono text-cyan-500 uppercase">
+            INPUT: IDENTITY
+          </label>
+
+          <input
+            type="text"
+            name="name"
+            placeholder="ENTER NAME"
+            required
+            className="w-full bg-black border border-white/10 p-4 text-white focus:border-cyan-500 outline-none transition-colors font-mono"
+          />
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="text-xs font-mono text-cyan-500 uppercase">INPUT: IDENTITY</label>
-              <input type="text" className="w-full bg-black border border-white/10 p-4 text-white focus:border-cyan-500 outline-none transition-colors font-mono" placeholder="ENTER NAME" required />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-mono text-cyan-500 uppercase">INPUT: FREQUENCY</label>
-              <input type="email" className="w-full bg-black border border-white/10 p-4 text-white focus:border-cyan-500 outline-none transition-colors font-mono" placeholder="ENTER EMAIL" required />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-xs font-mono text-cyan-500 uppercase">INPUT: DATA PACKET</label>
-            <textarea rows="6" className="w-full bg-black border border-white/10 p-4 text-white focus:border-cyan-500 outline-none transition-colors font-mono resize-none" placeholder="TYPE MESSAGE..." required></textarea>
-          </div>
-          
-          <button className="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-bold py-4 uppercase tracking-widest transition-all flex items-center justify-center gap-3">
-            {status} <Send size={16} />
-          </button>
-        </form>
-      </Card>
-    </section>
+        {/* Email */}
+        <div className="space-y-2">
+          <label className="text-xs font-mono text-cyan-500 uppercase">
+            INPUT: FREQUENCY
+          </label>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="ENTER EMAIL"
+            required
+            className="w-full bg-black border border-white/10 p-4 text-white focus:border-cyan-500 outline-none transition-colors font-mono"
+          />
+        </div>
+
+      </div>
+
+      {/* Message */}
+      <div className="space-y-2">
+        <label className="text-xs font-mono text-cyan-500 uppercase">
+          INPUT: DATA PACKET
+        </label>
+
+        <textarea
+          rows="6"
+          name="message"
+          placeholder="TYPE MESSAGE..."
+          required
+          className="w-full bg-black border border-white/10 p-4 text-white focus:border-cyan-500 outline-none transition-colors font-mono resize-none"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        className="w-full bg-cyan-600 hover:bg-cyan-500 text-black font-bold py-4 uppercase tracking-widest transition-all flex items-center justify-center gap-3"
+      >
+        {status}
+        <Send size={16} />
+      </button>
+    </form>
+  </Card>
+</section>
   );
 };
 
