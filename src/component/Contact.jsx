@@ -1,80 +1,105 @@
 import { useState } from "react";
 import PERSONAL_INFO from "../data/PERSONAL_INFO.js";
 import SectionLayout from "./SectionLayout";
-import { Mail } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 const Contact = () => {
-  const [status, setStatus] = useState("Submit Inquiry");
+  const [status, setStatus] = useState("Send Message");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("Sending...");
     setTimeout(() => {
-        setStatus("Message Sent");
-        setTimeout(() => setStatus("Submit Inquiry"), 3000);
+      setStatus("Message Sent");
+      setTimeout(() => setStatus("Send Message"), 3000);
     }, 1000);
   };
 
   return (
     <SectionLayout id="contact" title="04. Contact" className="border-b-0">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <div>
-          <h2 className="text-4xl md:text-5xl font-medium text-stone-900 tracking-tight mb-6">
-            Let's build something exceptional.
+      <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        
+        {/* Left Column: Context & Direct Contact */}
+        <div className="lg:w-1/3 flex flex-col items-start">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-6">
+            Let's start a conversation.
           </h2>
-          <p className="text-stone-600 text-lg leading-relaxed mb-8">
-            Whether you have a project in mind, a role to fill, or just want to discuss software architecture, feel free to reach out.
+          <p className="text-gray-600 text-lg leading-relaxed mb-10">
+            Have a project in mind, a question, or just want to connect? Fill out the form or reach out to me directly via email.
           </p>
+          
           <a 
             href={`mailto:${PERSONAL_INFO.email}`}
-            className="inline-flex items-center gap-4 text-sm font-medium text-stone-900 group"
+            className="group inline-flex items-center gap-4 text-sm font-bold text-gray-900"
           >
-            <Mail size={18} className="text-stone-400 group-hover:text-stone-900 transition-colors" />
-            <span className="relative">
+            <Mail size={18} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
+            <span className="border-b-2 border-transparent group-hover:border-blue-600 transition-colors pb-0.5">
               {PERSONAL_INFO.email}
-              <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-stone-200 group-hover:bg-stone-900 transition-colors"></span>
             </span>
           </a>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-10">
-          <div className="relative">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              className="w-full bg-transparent border-b border-stone-300 py-3 text-stone-900 placeholder:text-stone-400 focus:border-stone-900 outline-none transition-colors text-lg"
-            />
-          </div>
-          <div className="relative">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              required
-              className="w-full bg-transparent border-b border-stone-300 py-3 text-stone-900 placeholder:text-stone-400 focus:border-stone-900 outline-none transition-colors text-lg"
-            />
-          </div>
-          <div className="relative">
-            <textarea
-              rows="1"
-              name="message"
-              placeholder="Project details or message..."
-              required
-              className="w-full bg-transparent border-b border-stone-300 py-3 text-stone-900 placeholder:text-stone-400 focus:border-stone-900 outline-none transition-colors text-lg resize-none min-h-[40px]"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="group flex items-center justify-between w-full bg-stone-900 text-stone-50 px-6 py-4 hover:bg-stone-800 transition-colors"
-          >
-            <span className="text-xs font-bold uppercase tracking-widest">{status}</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-        </form>
+
+        {/* Right Column: Simple & Minimal Form */}
+        <div className="lg:w-2/3">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+            
+            <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                required
+                className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 text-lg focus:border-blue-600 focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                required
+                className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 text-lg focus:border-blue-600 focus:outline-none transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="message" className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                className="w-full bg-transparent border-b border-gray-200 py-2 text-gray-900 text-lg resize-none focus:border-blue-600 focus:outline-none transition-colors"
+              ></textarea>
+            </div>
+
+            <div className="mt-4">
+              <button
+                type="submit"
+                className="group inline-flex items-center gap-4 bg-gray-900 text-white px-8 py-4 hover:bg-blue-600 transition-colors duration-300"
+              >
+                <span className="text-sm font-bold uppercase tracking-widest">
+                  {status}
+                </span>
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+            
+          </form>
+        </div>
+        
       </div>
     </SectionLayout>
   );
 };
-export default Contact
+
+export default Contact;
