@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PERSONAL_INFO from "../data/PERSONAL_INFO.JS";
+import PERSONAL_INFO from "../data/PERSONAL_INFO.js";
 import SectionLayout from "./SectionLayout";
 import { Mail } from "lucide-react";
 import { ArrowRight } from "lucide-react";

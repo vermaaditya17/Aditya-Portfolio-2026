@@ -1,4 +1,4 @@
-import  PERSONAL_INFO  from "../data/PERSONAL_INFO.JS";
+import  PERSONAL_INFO  from "../data/PERSONAL_INFO.js";
 import { Github, Linkedin } from "lucide-react"; 
 const Footer = () => (
   <footer className="px-6 md:px-12 py-8 bg-stone-900 text-stone-400 flex flex-col md:flex-row justify-between items-center gap-6">
