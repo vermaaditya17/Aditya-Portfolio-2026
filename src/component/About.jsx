@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Database, Code, MapPin } from 'lucide-react';
-import PERSONAL_INFO from '../data/PERSONAL_INFO';
-import SKILLS_CATEGORIES from '../data/SKILL_CATEGORIES';
+import PERSONAL_INFO from '../data/PERSONAL_INFO.js';
+import SKILLS_CATEGORIES from '../data/SKILL_CATEGORIES.js';
 import SectionLayout from './SectionLayout';
 
 const About = () => {
